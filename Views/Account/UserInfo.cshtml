@@ -1,0 +1,51 @@
+﻿@using System.ComponentModel
+@model Log_In.Models.Tables.Studente
+@{
+    ViewData["Title"] = "UserInfo";
+}
+<h1>User Info</h1>
+
+<div class="shadow p-3 mb-5 bg-white">
+    <b>User Name: </b>@ViewBag.Name
+</div>
+<div class="shadow p-3 mb-5 bg-white">
+    <b>Email: </b>@ViewBag.Email
+</div>
+<!-- "stampa" un oggetto come fosse una collection  -->
+@foreach (var i in TypeDescriptor.GetProperties(ViewBag.Stud))
+{
+    @if (@i.Name.IndexOf("Id") == -1)
+    {
+        @if (@i.Name.Equals("DataNascita") && @i.GetValue(ViewBag.Stud) != null)
+        {
+            <div class="shadow p-3 mb-5 bg-white">
+                <b>@i.DisplayName: </b>@i.GetValue(ViewBag.Stud).ToString("dd/MM/yyyy")
+            </div>
+        }
+        else
+        {
+            @if (@i.Name.Equals("DataAquisto") && @i.GetValue(ViewBag.Stud) == null)
+            {
+                <div class="shadow p-3 mb-5 bg-white">
+                    <b>@i.DisplayName: </b>@i.GetValue(ViewBag.Stud) &nbsp &nbsp &nbsp
+                    <a class="btn btn-primary btn-sm" style="background-color: olivedrab;" asp-area="" asp-controller="Account" asp-action="FakeBuy">Compra il corso</a>
+                </div>
+            }
+            else
+            {
+                <div class="shadow p-3 mb-5 bg-white">
+                    <b>@i.DisplayName: </b>@i.GetValue(ViewBag.Stud)
+                </div>
+            }
+
+        }
+    }
+}
+
+<div class="shadow p-3 mb-5 bg-white">
+    <a class="list-item" asp-area="" asp-controller="Account" asp-action="ChangePassword"><b>Cambia Password</b></a>
+</div>
+<div align="right">
+    <a role="button" asp-area="" asp-controller="Account" asp-action="DeleteUser" class="btn btn-primary btn-lg" style="background-color: red;">Delete Account</a>
+    <a role="button" asp-area="" asp-controller="Account" asp-action="UpdateUserInfo" class="btn btn-primary btn-lg">Update Account</a>
+</div>

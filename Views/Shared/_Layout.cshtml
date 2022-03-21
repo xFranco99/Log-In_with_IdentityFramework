@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Log_In</title>
+    <link rel="stylesheet" href="/css/bootstrap-italia.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body style="background-color: aliceblue;">
+    <header>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light" style="background-color: #C6E5F3;">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="/Media/logo_transparent_resize.png" style="height: 40px;" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                        <div class="it-access-top-wrapper">
+
+                        </div>
+                        <div class="dropdown">
+                            <a class="btn btn-dropdown dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @User.Identity.Name
+                                <svg class="icon-expand icon icon-sm icon-primary"><use href="/bootstrap-italia/dist/svg/sprite.svg#it-expand"></use></svg>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <div class="link-list-wrapper">
+                                    <ul class="link-list">
+                                        <li><a class="list-item" asp-area="" asp-controller="Account" asp-action="Logout"><span>Log out</span></a></li>
+                                        <li><a class="list-item" asp-area="" asp-controller="Account" asp-action="UserInfo"><span>User Info</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        }
+        else
+        {
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light" style="background-color: #C6E5F3;">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="/Media/logo_transparent_resize.png" style="height: 40px;" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="it-access-top-wrapper">
+                        <a class="btn btn-primary btn-sm" style="background-color: blueviolet;" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                    </div>
+                </div>
+            </nav>
+        }
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Log_In - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" crossorigin="anonymous"></script>
+    <script src="/js/bootstrap-italia.min.js"></script>
+    <script src="/js/bootstrap-italia.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

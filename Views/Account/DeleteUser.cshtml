@@ -1,0 +1,20 @@
+﻿@model Log_In.ViewModel.DeleteUserViewModel
+@{
+    ViewData["Title"] = "DeleteUser";
+}
+<div align="center">
+    <h1>Cancella Account</h1>
+    <form method="post">
+        <div>&nbsp</div>
+        <div>&nbsp</div>
+        <div>
+            <div class="form-check">
+                <input asp-for="Confirm" type="checkbox" class="custom-control-input">
+                <label class="custom-control-label" asp-for="Confirm">@Html.DisplayNameFor(m => m.Confirm)</label>
+            </div>
+        </div>
+        <div>&nbsp</div>
+        <div>&nbsp</div>
+        <button type="submit" class="btn btn-primary btn-lg" style="background-color: red;">Delete Account</button>
+    </form>
+</div>
